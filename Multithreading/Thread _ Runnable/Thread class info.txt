@@ -1,0 +1,62 @@
+Thread class
+
+-> Constructors of Thread class
+
+1. Thread()
+2. Thread(String str)
+3. Thread(Runnable r)
+4. Thread(Runnable r, String str)
+
+
+-> Methods
+
+0. Thread.currentThread().getName() -> Returns the name of the thread.
+
+1. setName(String name) -> Changes the name of this thread to be equal to the argument name.
+
+2. getName() -> Returns this thread's name.
+
+3. getPriority() -> Returns this thread's priority.
+
+4. isAlive() -> Tests if this thread is alive. A thread is alive if it has been started and has not yet died.
+
+5.1. join(long millis) -> Waits at most millis milliseconds for this thread to die. A timeout of 0 means to wait forever.
+     This implementation uses a loop of this.wait calls conditioned on this.isAlive. 
+     As a thread terminates the this.notifyAll method is invoked. 
+     It is recommended that applications not use wait, notify, or notifyAll on Thread instances.
+
+5.2. join() -> Waits for this thread to die.	 
+
+6. run() -> If this thread was constructed using a separate Runnable run object, 
+			then that Runnable object's run method is called; otherwise, this method does nothing and returns.
+
+7. sleep(long millis) -> Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds.
+
+8. start() -> Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.
+
+9.1 wait() -> Causes the current thread to wait until another thread invokes the notify() method or the notifyAll() method for this object. 
+			  In other words, this method behaves exactly as if it simply performs the call wait(0).
+			  
+9.2 wait(long timeout) -> Causes the current thread to wait until either another thread invokes the notify() method 
+						  or the notifyAll() method for this object, or a specified amount of time has elapsed.
+
+10. notify() -> Wakes up a single thread that is waiting on this object's monitor. If any threads are waiting on this object, 
+				one of them is chosen to be awakened.
+
+11. notifyAll() -> Wakes up all threads that are waiting on this object's monitor.
+
+12. interrupt() -> If this thread is blocked in an invocation of the wait(), wait(long), or wait(long, int) methods of the Object class, 
+				   or of the join(), join(long), join(long, int), sleep(long), or sleep(long, int), methods of this class, 
+				   then its interrupt status will be cleared and it will receive an InterruptedException.
+				   If this thread is blocked in an I/O operation upon an InterruptibleChannel then the channel will be closed, 
+				   the thread's interrupt status will be set, and the thread will receive a ClosedByInterruptException.
+				   If this thread is blocked in a Selector then the thread's interrupt status will be set and it will return 
+				   immediately from the selection operation, possibly with a non-zero value, just as if the selector's wakeup method were invoked.
+				   If none of the previous conditions hold then this thread's interrupt status will be set.
+				   Interrupting a thread that is not alive need not have any effect.
+
+
+-> Some important points to remember
+
+1. When we extend Thread class, we cannot override setName() and getName() functions, because they are declared final in Thread class.
+2. While using sleep(), always handle the exception it throws.

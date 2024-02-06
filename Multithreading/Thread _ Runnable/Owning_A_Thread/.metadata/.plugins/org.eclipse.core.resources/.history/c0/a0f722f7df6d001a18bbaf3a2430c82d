@@ -1,0 +1,18 @@
+
+public class MyTask implements Task {
+
+	// Data members:
+	private int num;
+	
+	@Override
+	public void doTask() {
+		// in MyTask class we create a thread using lambda expression!
+		new Thread(() -> {
+			for(int i = 0; i < 100; i++) {
+				this.num++;
+			}
+			
+			System.out.println(this.num);
+		}).start();
+	}
+}

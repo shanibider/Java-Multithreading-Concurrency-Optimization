@@ -1,0 +1,18 @@
+package test;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+		ActiveObject activeObject = new ActiveObject();
+		
+		Thread t1 = new Thread(() -> { activeObject.doTask("1", 100); });
+		Thread t2 = new Thread(() -> { activeObject.doTask("2", 200); });
+		Thread t3 = new Thread(() -> { activeObject.doTask("3", 300); });
+	
+		t1.start();
+		t2.start();
+		t3.start();
+	}
+}
+

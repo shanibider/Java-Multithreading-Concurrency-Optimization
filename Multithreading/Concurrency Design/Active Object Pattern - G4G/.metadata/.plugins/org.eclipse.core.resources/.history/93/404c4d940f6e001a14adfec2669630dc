@@ -1,0 +1,8 @@
+package test;
+
+public class Main {
+
+	ActiveObject activeObject = new ActiveObject();
+	
+	Thread t1 = new Thread(() -> { activeObject.doTask("1", 100); });
+}

@@ -1,0 +1,30 @@
+package test;
+
+import java.util.Date; 
+
+
+//Task class to be executed
+public class Task implements Runnable{
+	// Data members:
+	private String name;
+	
+	// CTOR.
+	public Task(String otherName) {
+		this.name = otherName;
+	}
+	
+    // Prints task name and sleeps for 1s 
+    // This Whole process is repeated 5 times
+	@Override
+	public void run() {
+		try {
+			for(int i = 0; i < 5; i++) {
+				if(i==0) {
+					Date date = new Date(); 
+				}
+			}
+		}
+		
+	}
+
+}

@@ -1,0 +1,21 @@
+package test;
+
+public class Main {
+
+	public static void main(String[] args) {
+		MyGenericActiveObject mgao = new MyGenericActiveObject();
+		mgao.execute(new Runnable() {
+			
+			@Override
+			public void run() {
+				for(int i = 0; i < 5; i++) {
+					System.out.println("counting... " + (i+1) + " ...");
+					try {
+						Thread.sleep(2);
+					} catch (InterruptedException e) {e.printStackTrace(); }
+				}
+				
+			}
+		});
+	}
+}

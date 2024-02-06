@@ -1,0 +1,12 @@
+package test;
+
+public class Task extends Thread{
+	public void run() {
+		System.out.println("New Thread -> run task executed by child Thread");
+		System.out.println("New Thread -> count to 10!");
+		for(int i = 0; i < 10; i++) {
+			System.out.print(i + "...! ");
+		}
+	}
+	
+}

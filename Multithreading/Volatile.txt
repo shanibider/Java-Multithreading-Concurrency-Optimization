@@ -1,0 +1,50 @@
+Volatile
+
+The Java volatile keyword is used to mark a Java variable as "being stored in main memory". 
+More precisely that means, that every read of a volatile variable will be read from the computer's main memory, 
+and not from the CPU cache, and that every write to a volatile variable will be written to main memory, and not just to the CPU cache.
+Using volatile is yet another way (like synchronized, atomic wrapper) of making class thread safe. 
+Thread safe means that a method or class instance can be used by multiple threads at the same time without any problem.
+
+class SharedObj
+{
+   // Changes made to sharedVar in one thread
+   // may not immediately reflect in other thread
+   static int sharedVar = 6;
+}
+
+Suppose that two threads are working on SharedObj. 
+If two threads run on different processors each thread may have its own local copy of sharedVariable. 
+If one thread modifies its value the change might not reflect in the original one in the main memory instantly. 
+This depends on the write policy of cache. Now the other thread is not aware of the modified value which leads to data inconsistency.
+
+--> so what we do?
+
+class SharedObj
+{
+   // volatile keyword here makes sure that
+   // the changes made in one thread are 
+   // immediately reflect in other thread
+   static volatile int sharedVar = 6;
+}
+
+Note that volatile should not be confused with static modifier. 
+static variables are class members that are shared among all objects. 
+There is only one copy of them in main memory.
+
+
+volatile vs synchronized:
+Before we move on let’s take a look at two important features of locks and synchronization.
+
+1. Mutual Exclusion: It means that only one thread or process can execute a block of code (critical section) at a time.
+2. Visibility: It means that changes made by one thread to shared data are visible to other threads.
+Java’s synchronized keyword guarantees both mutual exclusion and visibility. If we make the blocks of threads that modifies the value of shared variable synchronized only one thread can enter the block and changes made by it will be reflected in the main memory. All other thread trying to enter the block at the same time will be blocked and put to sleep.
+
+In some cases we may only desire the visibility and not atomicity. 
+Use of synchronized in such situation is an overkill and may cause scalability problems. 
+Here volatile comes to the rescue. 
+Volatile variables have the visibility features of synchronized but not the atomicity features. 
+The values of volatile variable will never be cached and all writes and reads will be done to and from the main memory. 
+However, use of volatile is limited to very restricted set of cases as most of the times atomicity is desired. 
+For example a simple increment statement such as x = x + 1; or x++ seems to be a single operation 
+but is s really a compound read-modify-write sequence of operations that must execute atomically.

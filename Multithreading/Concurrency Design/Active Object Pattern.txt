@@ -1,0 +1,15 @@
+Active Object Pattern
+
+Active Object is a concurrency pattern in which we try to separate the invocation of a method from its execution. 
+Typically, an active object provides synchronous methods and executes the method calls in an asynchronous way. 
+An active object usually has its own thread of control.
+
+This pattern is useful in refactoring legacy projects by introducing concurrency capability.
+
+
+The key elements in active object pattern are:
+
+-> Proxy (or Client Interface) - A public method provided by active object to clients.
+-> Dispatch Queue - A list of pending requests from clients.
+-> Scheduler - Determines the order to execute the requests.
+-> Result Handle (or Callback) - This allows the result to be obtained by proxy after a request is executed.

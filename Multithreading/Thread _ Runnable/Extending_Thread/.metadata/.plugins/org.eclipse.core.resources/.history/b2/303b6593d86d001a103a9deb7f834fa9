@@ -1,0 +1,14 @@
+package test;
+
+public class main {
+
+	public static void main(String[] args) {
+		Task task = new Task();
+		task.start();
+		
+		System.out.println("Main method executed by main thread");
+
+		task.run();
+	}
+
+}

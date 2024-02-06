@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="test.Singleton_1"/>
+<fullyQualifiedTypeName name="test.Singleton_2"/>
+<fullyQualifiedTypeName name="java.util.concurrent.SynchronousQueue"/>
+<fullyQualifiedTypeName name="test.Singleton_3"/>
+<fullyQualifiedTypeName name="test.Singleton_5"/>
+<fullyQualifiedTypeName name="test.Singleton_6.BillPughSingleton"/>
+<fullyQualifiedTypeName name="test.Singleton_6"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+</qualifiedTypeNameHistroy>

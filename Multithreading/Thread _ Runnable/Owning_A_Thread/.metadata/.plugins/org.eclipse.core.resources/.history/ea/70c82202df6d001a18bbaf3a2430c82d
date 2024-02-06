@@ -1,0 +1,16 @@
+
+public class MyTask implements Task {
+
+	// Data members:
+	private int num;
+	
+	@Override
+	public void doTask() {
+		new Thread(() -> {
+			for(int i = 0; i < 100; i++) {
+				this.num++;
+			}
+		}).start();
+		
+	}
+}

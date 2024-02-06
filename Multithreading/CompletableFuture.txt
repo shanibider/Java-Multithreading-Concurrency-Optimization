@@ -1,0 +1,80 @@
+CompletableFuture
+
+https://www.callicoder.com/java-8-completablefuture-tutorial/
+
+A CompltableFuture is used for asynchronous programming. 
+Asynchronous programming means writing non-blocking code. 
+It runs a task on a separate thread than the main application thread and notifies the main thread about its progress, completion or failure.
+In this way, the main thread does not block or wait for the completion of the task. Other tasks execute in parallel. 
+Parallelism improves the performance of the program.
+
+
+Future vs. CompletableFuture ->
+
+A CompletableFuture is an extension to Java's Future API which was introduced in Java 8.
+A Future is used for asynchronous Programming. It provides two methods, isDone() and get(). 
+The methods retrieve the result of the computation when it completes.
+
+Future has so many limitations, that's why we have CompletableFuture. 
+CompletableFuture provides a broad set of methods for creating multiple Futures, chaining, and combining. 
+It also has comprehensive exception handling support.
+
+
+Transforming and acting on a CompletableFuture ->
+
+The CompletableFuture.get() method is blocking. It waits until the Future is completed and returns the result after its completion.
+But, that’s not what we want right? For building asynchronous systems we should be able to
+attach a callback to the CompletableFuture which should automatically get called when the Future completes.
+That way, we won’t need to wait for the result, and we can write the logic that needs to be
+executed after the completion of the Future inside our callback function.
+You can attach a callback to the CompletableFuture using thenApply(), thenAccept() and thenRun() methods:
+
+1. thenApply() -> You can use thenApply() method to process and transform the result of a CompletableFuture when it arrives. 
+				  It takes a Function<T,R> as an argument.
+
+2. thenAccept() OR thenRun() -> If you don’t want to return anything from your callback function and just want to run some piece of code
+								after the completion of the Future, then you can use thenAccept() and thenRun() methods. 
+								These methods are consumers and are often used as the last callback in the callback chain.
+								CompletableFuture.thenAccept() takes a Consumer<T> and returns CompletableFuture<Void>. 
+								It has access to the result of the CompletableFuture on which it is attached.
+
+
+
+Example 1:
+
+import java.util.Arrays;  
+import java.util.List;  
+import java.util.concurrent.CompletableFuture;
+  
+public class CompletableFutureExample1 {  
+	public static void main(String[] args) {  
+		try {  
+			List<Integer> list = Arrays.asList(5,9,14);  
+			list.stream().map(num -> CompletableFuture.supplyAsync( () -> getNumber(num)))
+							 .map(CompletableFuture -> CompletableFuture.thenApply(n -> n * n)) // NOTICE thenApply.
+							 .map(t -> t.join()).forEach(s -> System.out.println(s));  
+		}  
+		catch (Exception e) { e.printStackTrace(); }  
+	}  
+	
+	private static int getNumber(int a) {  
+		return a*a;  
+	}  
+}
+  
+Example 2: // NOTICE thenApply(), thenAccept().
+{
+	// Something....
+	
+	public String deepThought() {
+		// takes a really really long time...
+		return "42";
+	}
+	
+	// Something....
+	// in the main()
+	CompletableFuture.supplyAsync(() -> { return deepThought(); }).thenApply(answer->Integer.parseInt(answer)).thenApply(x->x*2)
+										 .thenAccept(answer->System.out.println("answer: "+answer));
+	// continue in the main.
+	
+}

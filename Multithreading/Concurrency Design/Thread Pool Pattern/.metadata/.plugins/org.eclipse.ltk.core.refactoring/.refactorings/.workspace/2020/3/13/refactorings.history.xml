@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;Thread Pool Pattern&apos; to &apos;Thread_Pool_Pattern&apos;&#x0D;&#x0A;- Original element: &apos;Thread Pool Pattern&apos;&#x0D;&#x0A;- Renamed element: &apos;Thread Pool Pattern&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;Thread Pool Pattern&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=Thread Pool Pattern" name="Thread_Pool_Pattern" references="true" stamp="1585137735810" version="1.0"/>
+</session>

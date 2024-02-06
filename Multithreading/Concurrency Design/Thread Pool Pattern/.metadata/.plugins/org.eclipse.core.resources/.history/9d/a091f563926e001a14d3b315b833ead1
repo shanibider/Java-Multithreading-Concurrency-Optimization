@@ -1,0 +1,13 @@
+package test;
+
+public class Main {
+
+	// Maximum number of threads in thread pool.
+	static final int MAX_T = 3;
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

@@ -1,0 +1,17 @@
+package test;
+
+// Bill Pugh Singleton Implementation: Prior to Java5, 
+// memory model had a lot of issues and above methods caused
+// failure in certain scenarios in multithreaded environment.
+// So, Bill Pugh suggested a concept of inner static classes to use for singleton.
+
+// Bill Pugh Singleton Implementation
+public class Singleton_6 {
+	// Private CTOR.
+	private Singleton_6() {	}
+	
+	// Inner class to provide instance of class
+	private static class BillPughSingleton {
+		private static final Singleton_6 instance = new Singleton_6();
+	}
+}

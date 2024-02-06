@@ -1,0 +1,11 @@
+package test;
+
+// 4. Thread Safe Singleton: A thread safe singleton in created so that singleton property
+// is maintained even in multithreaded environment. 
+// To make a singleton class thread-safe, getInstance() method is made 
+// synchronized so that multiple threads can’t access it simultaneously.
+
+// Thread Safe Singleton
+public class Singleton_4 {
+
+}

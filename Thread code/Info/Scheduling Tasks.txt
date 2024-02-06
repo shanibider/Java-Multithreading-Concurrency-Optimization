@@ -1,0 +1,33 @@
+Scheduling Tasks – with a simple Timer!
+
+The scheduleAtFixedRate(TimerTask task,Date firstTime,long period) method is 
+used to schedule the specified task for repeated fixed-rate execution, beginning at the specified time
+-> task − This is the task to be scheduled.
+-> firstTime − This is the first time at which task is to be executed.
+-> period − This is the time in milliseconds between successive task executions.
+
+
+
+-> Example:
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class ThreadTest {
+	
+	private static class Ping extends TimerTask {
+		public void run() { System.out.println("ping"); }
+	}
+	
+	private static class Pong extends TimerTask {
+		public void run() { System.out.println("pong"); }
+	}
+	
+	public static void main(String[] args){
+		Ping ping = new Ping();
+		Pong pong = new Pong();
+		Timer t = new Timer();
+		t.scheduleAtFixedRate(ping, 0, 1000);
+		t.scheduleAtFixedRate(pong, 500, 1000);
+		}
+}

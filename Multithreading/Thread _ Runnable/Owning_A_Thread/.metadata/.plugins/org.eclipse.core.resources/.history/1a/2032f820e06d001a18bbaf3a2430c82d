@@ -1,0 +1,13 @@
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		Task task = new MyTask();
+		task.doTask();
+		Thread.sleep(4000);
+		task.doTask();
+		
+	}
+
+}

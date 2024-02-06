@@ -1,0 +1,18 @@
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		MyTask task = new MyTask();
+		
+		// 1.
+		task.doTask(); // 100
+		System.out.println();
+		
+		
+		// 2.
+		task.doTask();
+		
+	}
+
+}

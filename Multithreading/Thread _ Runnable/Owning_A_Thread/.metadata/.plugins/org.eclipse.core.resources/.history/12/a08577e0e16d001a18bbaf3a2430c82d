@@ -1,0 +1,17 @@
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		MyTask task = new MyTask();
+		
+		task.doTask();
+		Thread.sleep(4000);
+		System.out.println(task.getNum()); // output: num after 4 seconds.
+		task.doTask();
+		task.stopTask();
+		
+		task.doTask(); // output: No more counting... (isOn == false).
+	}
+
+}

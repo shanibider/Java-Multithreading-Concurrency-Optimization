@@ -1,0 +1,31 @@
+Deadlock avoidance with tryLock()
+
+Java concurrency package give you the ability to use explicit locks. 
+With explicit locks, you can see if a lock is available and acquire only if it is available. 
+This way you can avoid deadlocks.
+
+-> Example: 
+
+We need to import:
+Import java.util.concurrent.locks.ReentrantLock;
+
+ReentrantLock L = new ReentrantLock();
+ReentrantLock R = new ReentrantLock();
+
+public void run() {
+	boolean l = L.tryLock(); // reentrantLock allows to use tryLock() -> It returns true / false, instead of just blocking like synchronize.
+	boolean r = R.tryLock(); // reentrantLock allows to use tryLock() -> It returns true / false, instead of just blocking like synchronize.
+	
+	try{
+		if(l && r) {		// Only if we manage to lock both locks -> we do the reading & writing, else -> we try again later.
+			// do the writing...
+			// do some reading...
+			// do more writing...
+		} else {
+			// try again later...
+	}
+	}finally {
+		if(l) L.unlock(); // Finally, we unlock whatever lock we may have locked.
+		if(r) R.unlock(); // Finally, we unlock whatever lock we may have locked.
+	}
+}

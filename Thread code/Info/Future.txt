@@ -1,0 +1,63 @@
+﻿Future
+
+To create the thread, a Runnable is required. To obtain the result, a Future is required.
+
+A Future interface provides methods to check if the computation is complete, 
+to wait for its completion and to retrieve the results of the computation. 
+The result is retrieved using Future’s get() method when the computation has completed, and it blocks until it is completed.
+
+When the call() method completes, answer must be stored in an object known to the main thread, 
+so that the main thread can know about the result that the thread returned. 
+How will the program store and obtain this result later? For this, a Future object can be used. 
+Think of a Future as an object that holds the result – it may not hold it right now, 
+but it will do so in the future (once the Callable returns). 
+Thus, a Future is basically one way the main thread can keep track of the progress and result from other threads. 
+To implement this interface, 5 methods have to be overridden.
+
+Observe that Callable and Future do two different things – Callable is similar to Runnable, 
+in that it encapsulates a task that is meant to run on another thread, 
+whereas a Future is used to store a result obtained from a different thread. 
+In fact, the Future can be made to work with Runnable as well, 
+which is something that will become clear when Executors come into the picture.
+
+-> public boolean cancel(boolean mayInterrupt): 
+   Used to stop the task. It stops the task if it has not started.
+   If it has started, it interrupts the task only if mayInterrupt is true.
+
+-> public Object get() throws InterruptedException, ExecutionException: 
+   Used to get the result of the task. If the task is complete, it returns the result immediately, 
+   otherwise it waits till the task is complete and then returns the result.
+
+-> public boolean isDone(): Returns true if the task is complete and false otherwise.
+
+
+The Java library has the concrete type FutureTask, which implements Runnable and Future, combining both functionality conveniently.
+A FutureTask can be created by providing its constructor with a Callable. 
+Then the FutureTask object is provided to the constructor of Thread to create the Thread object. 
+Thus, indirectly, the thread is created with a Callable. 
+For further emphasis, note that there is no way to create the thread directly with a Callable.
+
+Limitations of the Future ->
+1. It cannot be manually completed:
+	Let’s say that you’ve written a function to fetch the latest price of an e-commerce product from a remote API. 
+	Since this API call is time-consuming, you’re running it in a separate thread and returning a Future from your function.
+
+
+2. You cannot perform further action on a Future’s result without blocking:
+	Future does not notify you of its completion. It provides a get() method which blocks until the result is available.
+	You don’t have the ability to attach a callback function to the Future and have it get called automatically when the Future’s result is available.
+
+3. Multiple Futures cannot be chained together :
+	Sometimes you need to execute a long-running computation and when the computation is done, 
+	you need to send its result to another long-running computation, and so on.
+	You can not create such asynchronous workflow with Futures.
+
+4. You can not combine multiple Futures together :
+	Let’s say that you have 10 different Futures that you want to run in parallel and then run some function after all of them completes. 
+	You can’t do this as well with Future.
+	
+5. No Exception Handling :
+	Future API does not have any exception handling construct.
+
+
+

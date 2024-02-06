@@ -1,0 +1,13 @@
+package test;
+
+public class TaskRunnable implements Runnable{
+
+	private Task task;
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

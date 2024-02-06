@@ -1,0 +1,27 @@
+package test;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+public class MyGenericActiveObject {
+	// Data members:
+	BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<Runnable>(100);
+	
+	// CTOR.
+	public MyGenericActiveObject() {
+		new Thread(() -> {
+							while(true) {
+								try {
+									this.blockingQueue.take().run();
+								} catch (InterruptedException e) { e.printStackTrace();	}
+						 }
+		}).start();
+	}
+	
+	//
+	public void put(Runnable r) {
+		try {
+			this.blockingQueue.put(r);
+		} catch (InterruptedException e) { e.printStackTrace();	}
+	}
+}

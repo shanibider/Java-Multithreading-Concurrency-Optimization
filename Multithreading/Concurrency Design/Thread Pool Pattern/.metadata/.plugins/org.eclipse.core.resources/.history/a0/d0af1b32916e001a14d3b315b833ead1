@@ -1,0 +1,20 @@
+package test;
+
+//Task class to be executed
+public class Task implements Runnable{
+	// Data members:
+	private String name;
+	
+	// CTOR.
+	public Task(String otherName) {
+		this.name = otherName;
+	}
+	
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

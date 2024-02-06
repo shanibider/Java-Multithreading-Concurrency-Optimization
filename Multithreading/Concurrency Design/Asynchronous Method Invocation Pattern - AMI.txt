@@ -1,0 +1,23 @@
+Asynchronous Method Invocation Pattern - AMI
+
+In multithreaded computer programming, asynchronous method invocation (AMI), 
+also known as asynchronous method calls or the asynchronous pattern is a design pattern 
+in which the call site is not blocked while waiting for the called code to finish. 
+Instead, the calling thread is notified when the reply arrives. Polling for a reply is an undesired option.
+
+Background -> 
+In most programming languages a called method is executed synchronously, i.e. in the thread of execution from which it is invoked. 
+If the method takes a long time to complete, e.g. because it is loading data over the internet, 
+the calling thread is blocked until the method has finished. 
+When this is not desired, it is possible to start a "worker thread" and invoke the method from there. 
+In most programming environments this requires many lines of code, 
+especially if care is taken to avoid the overhead that may be caused by creating many threads. 
+AMI solves this problem in that it augments a potentially long-running ("synchronous") object method with an "asynchronous" 
+variant that returns immediately, along with additional methods that make it easy to receive notification of completion, 
+or to wait for completion at a later time.
+
+One common use of AMI is in the active object design pattern. 
+Alternatives are synchronous method invocation and future objects. 
+An example for an application that may make use of AMI is a web browser that needs to display a web page even before all images are loaded.
+
+Since method is a special case of procedure, asynchronous method invocation is a special case of asynchronous procedure call.

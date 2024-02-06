@@ -1,0 +1,16 @@
+package test;
+
+public class main {
+
+	public static void main(String[] args) {
+		Task task = new Task();
+		task.start(); // Opens new Thread.
+		
+		System.out.println("Main method executed by main thread");
+		System.out.println("Main -> Q: How much is 5+6?");
+		System.out.println("Main -> A: 11!");
+		
+		task.start(); // Opens new Thread.
+	}
+
+}

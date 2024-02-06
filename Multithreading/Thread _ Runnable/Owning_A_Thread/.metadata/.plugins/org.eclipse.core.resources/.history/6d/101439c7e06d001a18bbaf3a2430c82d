@@ -1,0 +1,16 @@
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		MyTask task = new MyTask();
+		
+		// 1.
+		task.doTask(); // 100
+		Thread.sleep(4000);
+		System.out.println(task.getNum());
+		task.stopTask();
+		
+	}
+
+}

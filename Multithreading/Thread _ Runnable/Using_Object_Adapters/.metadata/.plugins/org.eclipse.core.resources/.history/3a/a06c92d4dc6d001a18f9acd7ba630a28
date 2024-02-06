@@ -1,0 +1,12 @@
+package test;
+
+public class main {
+
+	public static void main(String[] args) {
+		Thread t1 = new Thread(new TaskRunnable(new MyTask()));
+		Thread t2 = new Thread(new TaskRunnable(new MyTask()));
+		
+		t1.start();
+		t2.start();
+	}
+}

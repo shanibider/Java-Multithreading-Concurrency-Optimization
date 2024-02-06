@@ -1,0 +1,49 @@
+Atomic Variables
+
+You can think of these are wrapper of primitive types boolean, integer and long, with the difference: 
+they are designed to be safely used in multi-threaded context.
+
+Using atomic variables help avoiding the overhead of synchronization on a single primitive variable, 
+so it is more efficient than using synchronization/locking mechanism.
+
+The most commonly used atomic variable classes in Java are AtomicInteger, 
+AtomicLong, AtomicBoolean, and AtomicReference. These classes represent an int, long, boolean and 
+object reference respectively which can be atomically updated. The main methods exposed by these classes are:
+
+-> get() – gets the value from the memory, so that changes made by other threads are visible; equivalent to reading a volatile variable
+
+-> set() – writes the value to memory, so that the change is visible to other threads; equivalent to writing a volatile variable
+
+-> lazySet() – eventually writes the value to memory, 
+			   may be reordered with subsequent relevant memory operations. 
+			   One use case is nullifying references, 
+			   for the sake of garbage collection, which is never going to be accessed again.
+			   In this case, better performance is achieved by delaying the null volatile write.
+
+-> compareAndSet() – returns true when it succeeds, else false
+
+-> weakCompareAndSet() – weaker in the sense, that it does not create happens-before orderings. 
+						 This means that it may not necessarily see updates made to other variables
+
+
+Example:	
+					 
+public class SafeCounterWithoutLock {
+    private final AtomicInteger counter = new AtomicInteger(0);
+     
+    public int getValue() {
+        return counter.get();
+    }
+    public void increment() {
+        while(true) {
+            int existingValue = getValue();
+            int newValue = existingValue + 1;
+            if(counter.compareAndSet(existingValue, newValue)) {
+                return;
+            }
+        }
+    }
+}
+
+As you can see, we retry the compareAndSet operation and again on failure, 
+since we want to guarantee that the call to the increment method always increases the value by 1.

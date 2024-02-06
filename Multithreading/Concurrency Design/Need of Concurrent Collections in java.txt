@@ -1,0 +1,22 @@
+The Need of Concurrent Collections in java
+
+
+As we already know Collections which is nothing but collections of Objects where we deals with the Objects using some pre-defined methods. 
+But There are several problems which occurs when we use Collections concept in multi-threading. 
+The problems which occurs while using Collections in Multi-threaded application:
+
+-> Most of the Collections classes objects (like ArrayList, LinkedList, HashMap etc) are 
+non-synchronized in nature i.e. multiple threads can perform on a object at a time simultaneously. 
+Therefore objects are not thread-safe.
+
+-> Very few Classes objects (like Vector, Stack, HashTable) are synchronized 
+in nature i.e. at a time only one thread can perform on an Object. 
+But here the problem is performance is low because at a time single thread execute an object and rest thread has to wait.
+
+-> The main problem is when one thread is iterating an Collections object then if another thread cant modify the content of the object. 
+If another thread try to modify the content of object then we will get RuntimeException saying ConcurrentModificationException.
+ 
+-> Because of the above reason Collections classes is not suitable or we can say that good choice for Multi-threaded applications.
+
+
+To overcome the above problem SUN microSystem introduced a new feature in JDK 1.5Version, which is nothing but Concurrent Collections.
