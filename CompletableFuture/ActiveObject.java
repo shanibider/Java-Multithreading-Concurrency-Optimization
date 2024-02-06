@@ -27,7 +27,7 @@ public class ActiveObject {
 		
 	
 		this.activeThread.start();
-		lastTask = System.currentTimeMillis();
+		lastTask = System.c urrentTimeMillis();
 	}
 	
 	public void stop() {
